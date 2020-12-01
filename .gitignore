@@ -1,0 +1,8 @@
+node_modules/
+build/
+.vscode/
+.team-wallet-address.*
+.owner-wallet-private-key.*
+.whitelist.*
+.etherscan.apikey
+.infura-key

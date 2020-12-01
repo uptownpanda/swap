@@ -1,0 +1,41 @@
+{
+  "name": "uptown-panda-swap-token",
+  "version": "1.0.0",
+  "description": "The best ERC20 crypto project in the jungle. Even tastier than bambus!",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uptownpanda/swap-token.git"
+  },
+  "keywords": [
+    "crypto",
+    "ethereum",
+    "erc20",
+    "coin",
+    "uniswap",
+    "uptown panda",
+    "meme",
+    "burn",
+    "impeachment curve",
+    "farming",
+    "staking"
+  ],
+  "author": "Sad panda",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uptownpanda/token/issues"
+  },
+  "homepage": "https://github.com/uptownpanda/token#readme",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^3.2.0",
+    "@openzeppelin/test-helpers": "^0.5.9",
+    "@truffle/hdwallet-provider": "^1.1.1",
+    "chai": "^4.2.0",
+    "ganache-cli": "^6.12.1",
+    "prettier": "^2.1.2",
+    "prettier-plugin-solidity": "^1.0.0-alpha.59",
+    "truffle": "^5.1.51",
+    "truffle-plugin-verify": "^0.5.0"
+  }
+}

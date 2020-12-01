@@ -40,8 +40,8 @@ contract UptownPandaSwapToken is ERC721Burnable, Ownable {
         emit SwapTokenCreated(msg.sender, tokenId, block.timestamp);
     }
 
-    function checkBalance() external view returns (uint256) {
-        uint256 holderSwapTokensCount = balanceOf(msg.sender);
+    function checkBalance(address sender) external view returns (uint256) {
+        uint256 holderSwapTokensCount = balanceOf(sender);
         uint256 balance = 0;
         for (uint256 i = 0; i < holderSwapTokensCount; i++) {
             balance = balance.add(swapTokens[tokenOfOwnerByIndex(msg.sender, i)].amount);

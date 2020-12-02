@@ -77,11 +77,35 @@ contract('UptownPandaTokenSwap', (accounts) => {
         await uptownPanda.approve(uptownPandaSwapToken.address, constants.MAX_INT256, { from: bob });
         await uptownPandaSwapToken.swap({ from: bob });
         const bobTokenCount = Number(await uptownPandaSwapToken.balanceOf(bob));
-        for(let i = 0; i < bobTokenCount; i++) {
+        for (let i = 0; i < bobTokenCount; i++) {
             const bobTokenId = Number(await uptownPandaSwapToken.tokenOfOwnerByIndex(bob, new BN(i)));
             await uptownPandaSwapToken.burn(new BN(bobTokenId), { from: bob });
         }
         const checkBalance = new BN(await uptownPandaSwapToken.checkBalance(bob));
         expect(checkBalance.isZero()).to.be.true;
+    });
+
+    it('should revert on non-owner setIsSwapEnabled', async () => {
+        await shouldThrow(uptownPandaSwapToken.setIsSwapEnabled(false, { from: bob }));
+    });
+
+    it('should allow owner to change swap enabled', async () => {
+        await uptownPandaSwapToken.setIsSwapEnabled(false);
+        let isSwapEnabled = await uptownPandaSwapToken.isSwapEnabled();
+        expect(isSwapEnabled).to.be.false;
+        await uptownPandaSwapToken.setIsSwapEnabled(true);
+        isSwapEnabled = await uptownPandaSwapToken.isSwapEnabled();
+        expect(isSwapEnabled).to.be.true;
+    });
+
+    it('should have swap enabled by default', async () => {
+        const isSwapEnabled = await uptownPandaSwapToken.isSwapEnabled();
+        expect(isSwapEnabled).to.be.true;
+    });
+
+    it('should revert when swapping is disabled', async () => {
+        await uptownPandaSwapToken.setIsSwapEnabled(false);
+        await uptownPanda.approve(uptownPandaSwapToken.address, constants.MAX_INT256, { from: bob });
+        await shouldThrow(uptownPandaSwapToken.swap({ from: bob }));
     });
 });

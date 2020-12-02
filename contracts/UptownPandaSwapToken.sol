@@ -19,12 +19,23 @@ contract UptownPandaSwapToken is ERC721Burnable, Ownable {
     }
 
     SwapToken[] public swapTokens;
+    bool public isSwapEnabled;
 
     constructor(address _uptownPanda) public ERC721("UptownPandaTokenSwap", "$UP-SWAP") {
         uptownPanda = IERC20(_uptownPanda);
+        isSwapEnabled = true;
     }
 
-    function swap() external returns (uint256) {
+    modifier swapEnabled() {
+        require(isSwapEnabled, "Swapping is not enabled at the moment.");
+        _;
+    }
+
+    function setIsSwapEnabled(bool _isSwapEnabled) external onlyOwner {
+        isSwapEnabled = _isSwapEnabled;
+    }
+
+    function swap() external swapEnabled returns (uint256) {
         uint256 balance = uptownPanda.balanceOf(msg.sender);
         require(balance > 0, "You have no $UP tokens.");
 

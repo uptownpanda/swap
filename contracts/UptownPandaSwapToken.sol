@@ -18,7 +18,7 @@ contract UptownPandaSwapToken is ERC721Burnable, Ownable {
         uint256 amount;
     }
 
-    SwapToken[] private swapTokens;
+    SwapToken[] public swapTokens;
 
     constructor(address _uptownPanda) public ERC721("UptownPandaTokenSwap", "$UP-SWAP") {
         uptownPanda = IERC20(_uptownPanda);
@@ -44,7 +44,7 @@ contract UptownPandaSwapToken is ERC721Burnable, Ownable {
         uint256 holderSwapTokensCount = balanceOf(sender);
         uint256 balance = 0;
         for (uint256 i = 0; i < holderSwapTokensCount; i++) {
-            balance = balance.add(swapTokens[tokenOfOwnerByIndex(msg.sender, i)].amount);
+            balance = balance.add(swapTokens[tokenOfOwnerByIndex(sender, i)].amount);
         }
         return balance;
     }

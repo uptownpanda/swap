@@ -1,0 +1,3 @@
+#!/bin/bash
+bin/truffle migrate --skip-dry-run --reset --f 4 --network mainnet
+bin/truffle run verify UptownPandaSwap --network mainnet

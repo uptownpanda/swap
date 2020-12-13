@@ -13,7 +13,6 @@ contract UptownPandaSwap is Ownable {
     bool private isEthSent;
     uint256 public totalEthSupply;
     uint256 public totalUpsSupply;
-    uint256 public ethsPerUp;
 
     constructor(address swapTokenAddress) public {
         swapToken = UptownPandaSwapToken(swapTokenAddress);
